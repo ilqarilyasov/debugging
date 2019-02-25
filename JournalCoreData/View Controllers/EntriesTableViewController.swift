@@ -11,9 +11,15 @@ import CoreData
 
 class EntriesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        entryController.fetchEntriesFromServer { (_) in
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         tableView.reloadData()
     }
     

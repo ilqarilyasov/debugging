@@ -12,6 +12,8 @@ import CoreData
 // Bug 1: appendPathExtension
 // Bug 2: isViewLoaded
 // Bug 3: prepare(for segue:)
+// Bug 4: identifier typo
+// Bug 5: viewDidLoad call fetchEntriesFromServer
 
 let baseURL = URL(string: "https://journal-coredata-b5a96.firebaseio.com/")!
 
@@ -140,7 +142,7 @@ class EntryController {
         guard let identifier = identifier else { return nil }
         
         let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "identfier == %@", identifier)
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier)
         
         var result: Entry? = nil
         do {
