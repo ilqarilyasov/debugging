@@ -9,7 +9,11 @@
 import Foundation
 import CoreData
 
-let baseURL = URL(string: "https://journal-syncing.firebaseio.com/")!
+// Bug 1: appendPathExtension
+// Bug 2: isViewLoaded
+// Bug 3: prepare(for segue:)
+
+let baseURL = URL(string: "https://journal-coredata-b5a96.firebaseio.com/")!
 
 class EntryController {
     
@@ -44,7 +48,7 @@ class EntryController {
     private func put(entry: Entry, completion: @escaping ((Error?) -> Void) = { _ in }) {
         
         let identifier = entry.identifier ?? UUID().uuidString
-        let requestURL = baseURL.appendingPathComponent(identifier).appendingPathComponent("json")
+        let requestURL = baseURL.appendingPathComponent(identifier).appendingPathExtension("json")
         var request = URLRequest(url: requestURL)
         request.httpMethod = "PUT"
         
